@@ -5,7 +5,7 @@ fs.readFile('./origin.js', 'utf8', function(err, data){
 
 	c = jserrormonitor(data, 
 		{
-			id: './content.js', 
+			id: './origin.js', 
 			rExt: '.js'
 		}, 
 		{
