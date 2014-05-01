@@ -9,6 +9,7 @@ var mm = {
     click: function(){console.log('56');}
 }
 
+var exports = window;
 exports.init = function(){//注释
     click();
 }
@@ -41,7 +42,21 @@ var jjj = {
     ok: 'df'
 }
 
+jjj.init = function()//左括号换行了
+{
+    this.init();
+}
 
+var hello = {
+    click: function()
+        {
+
+        },
+    notHit: function()
+        {
+
+        }
+}
 
 /****************直接声明的function，可通过funcDeclaration来配置是否加try/catch**********************/
 function click(){
@@ -52,3 +67,13 @@ function click(){
 function initliaze(){
     click();
 }
+
+
+function clickheool()
+{
+
+}
+
+
+/*****************bad case*************************/
+var iii = function(){initliaze();}

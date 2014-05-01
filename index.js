@@ -47,21 +47,40 @@ function isHit(strFunHead, conf){
         (include && toString.apply(include) == '[object RegExp]' && include.test(strFunHead));
 }
 
-function modifyFunction(arrFile, loc, filepath, conf) {
+function modifyFunction(arrFile, node, loc, filepath, conf) {
     var _startLine = loc.start.line - 1,
         _startCol = loc.start.column,
         _endLine = loc.end.line - 1,
         _endCol = loc.end.column - 1,
         _strHead = arrFile[_startLine],
         _strEnd = arrFile[_endLine];
+
     //排除已含有try/catch
     if (/try\s*\{/.test(_strHead) || /catch\s*\(.*\)\s*\{/.test(_strEnd)) {
         return false;
     }
+
     //判断是否命中function名
-    if(!isHit(_strHead, conf.func)){
-        return false;
+    var hit = false;
+    if(node.type == "FunctionDeclaration" && node.id && isHit(node.id.name, conf.func)){//直接函数声明，使用函数名来判断
+        hit = true;
     }
+    if(node.type == "FunctionExpression"){//匿名函数
+        if(isHit(_strHead, conf.func)){//this.init = function(){},使用函数的第一行来判断关键字
+            hit = true;
+        }
+        /* 支持这种写法：
+         *  this.init = function()
+         *  {
+         *  }
+         */
+        else if(_strHead.replace(/[\s\t]/g, '') == "{" && _startLine >= 1 && isHit(arrFile[_startLine - 1], conf.func)){
+            hit = true;
+        }
+        
+    }
+    if(!hit) return false;
+
     arrFile[_startLine] = addTry(arrFile[_startLine], _startCol);
     arrFile[_endLine] = addCatch(arrFile[_endLine], filepath, loc.end.line,  _endCol, _startLine == _endLine);
 }
@@ -84,7 +103,7 @@ module.exports = function(content, file, conf) {
 
         traversal(_parse, function(node) {
             if (node.type == "FunctionExpression" || (node.type == "FunctionDeclaration" && funcDeclaration)) {
-                modifyFunction(arrContent, node.body.loc, file.id, conf);
+                modifyFunction(arrContent, node, node.body.loc, file.id, conf);
             }
         });
     } catch (e) {}
