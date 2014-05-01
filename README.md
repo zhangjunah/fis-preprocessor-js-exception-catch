@@ -101,7 +101,7 @@ fis.config.merge({
             js: 'js-exception-catch'
         }
     },
-    setting: {
+    settings: {
         preprocessor:{
             "js-exception-catch":{
                 file: {
@@ -112,7 +112,7 @@ fis.config.merge({
                     include: /init/i, //函数名的命中正则，不配置则都不命中
                     exclude: ''  //排除
                 },
-                funcDeclaration: ture //直接的函数声明是否也生效
+                funcDeclaration: true //直接的函数声明是否也生效
             }
         }
     }

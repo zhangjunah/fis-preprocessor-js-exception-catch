@@ -1,7 +1,7 @@
 {
   "name": "fis-preprocessor-js-exception-catch",
-  "version": "0.0.1",
-  "description": "js文件打包自动加try/catch的fisp插件",
+  "version": "0.0.2",
+  "description": "js文件编译自动加try/catch的fis插件",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
