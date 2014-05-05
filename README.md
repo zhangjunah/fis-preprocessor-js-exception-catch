@@ -6,7 +6,7 @@
 catch(e){
     if(typeof alog != 'undefined'){  //
         alog('exception.fire', 'catch', {
-            msg: e.message,
+            msg: e.message || e.description,
             path: 'common:common/widget/slide/slide.js', //编译前的js文件路径
             ln: 25 //编译前该function的结束行号
         });

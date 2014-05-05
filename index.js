@@ -28,7 +28,7 @@ function addTry(str, col) {
 
 //添加catch部分
 function addCatch(str, filepath, line, col, inOneLine) {
-    var _strCatch = "}catch(e){if(typeof alog != 'undefined'){alog('exception.fire','catch',{msg:e.message,path:'" + filepath + "',ln:" + line + "});}}";
+    var _strCatch = "}catch(e){if(typeof alog != 'undefined'){alog('exception.fire','catch',{msg:e.message || e.description,path:'" + filepath + "',ln:" + line + "});}}";
     //funtion整个在一行内，需要加上 "try{" 所占的4个位置
     if(inOneLine){
         col = col + 4;
