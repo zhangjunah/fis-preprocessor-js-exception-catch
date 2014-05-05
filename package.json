@@ -1,6 +1,6 @@
 {
   "name": "fis-preprocessor-js-exception-catch",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "js文件编译自动加try/catch的fis插件",
   "main": "index.js",
   "scripts": {
