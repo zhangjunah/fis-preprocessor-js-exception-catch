@@ -1,6 +1,6 @@
 {
   "name": "fis-preprocessor-js-exception-catch",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "js文件编译自动加try/catch的fis插件",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,12 @@
     "type": "git",
     "url": "https://github.com/zhangjunah/fis-preprocessor-js-exception-catch.git"
   },
+  "keywords": [
+    "fis",
+    "fis-plus",
+    "try/catch",
+    "exception"
+  ],
   "author": "zhangjunah",
   "email": "zhangjun08@baidu.com",
   "url": "http://weibo.com/zhangjunah",
